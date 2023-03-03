@@ -13,7 +13,6 @@ defined('APLIKASI') or exit('Anda tidak dizinkan mengakses langsung script ini!'
             <div class='box-body'>
                 <div id="hasilkirim"></div>
                 <div class=''>
-
                     <div id='tabledataujian' class='table-responsive'>
                         <table class='table table-bordered table-striped  table-hover'>
                             <thead>

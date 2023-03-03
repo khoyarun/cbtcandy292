@@ -74,8 +74,8 @@ if ($koneksi) {
                                     <div class='row'>
                                         <div class='col-md-12'>
                                             <div class='box box-solid'>
-                                                <div class='box-header with-border bg-blue'>
-                                                <h5 class='box-title'>DATA YANG MASUK KE LOKAL</h5>
+                                                <div class='box-header with-border bg-info text-center'>
+                                                    <p class='box-title text-bold'>DATA SISWA YANG MASUK KE LOKAL</p>
                                                 </div>
                                                 <div class='box-body'>
                                                 <table class='table table-striped'>
@@ -93,7 +93,7 @@ if ($koneksi) {
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-ban"></i> Sinkron Data Siswa Gagal!</h4>
         Silahkan periksa koneksi internet dan token
-      </div>';
+    </div>';
                 }
             }
             if ($data == 'soal') {
@@ -148,17 +148,17 @@ if ($koneksi) {
                             $i = 0;
                             foreach ($sync['fileQ'] as $file) {
                                 $sqlfile_pendukung = mysqli_query($koneksi, "insert into file_pendukung (id_file,id_mapel,nama_file,status_file) values ('$file[id_file]','$file[id_mapel]','$file[nama_file]','$file[status_file]')");
-                                    if (!$sqlfile_pendukung) {
-                                        $gagal5++;
-                                    } else {
-                                        $masuk5++;
-                                    }
-                                if ($file['id_mapel'] == $banksoal['id_mapel']) {
-                                    $urls[$i] = $setting['ip_server'] . "/files/" . $file['nama_file'];
-                                    $i++;
+                                if (!$sqlfile_pendukung) {
+                                    $gagal5++;
+                                } else {
+                                    $masuk5++;
                                 }
+                                // if ($file['id_mapel'] == $banksoal['id_mapel']) {
+                                //     $urls[$i] = $setting['ip_server'] . "/files/" . $file['nama_file'];
+                                //     $i++;
+                                // }
                             }
-                            multiple_download($urls);
+                            // multiple_download($urls);
                             // }
                         }
                     }
@@ -170,15 +170,15 @@ if ($koneksi) {
                                     <div class='row'>
                                         <div class='col-md-12'>
                                             <div class='box box-solid'>
-                                                <div class='box-header with-border bg-blue'>
-                                                <h5 class='box-title'>DATA SOAL YANG MASUK KE LOKAL</h5>
+                                                <div class='box-header with-border bg-info text-center'>
+                                                    <p class='box-title text-bold'>DATA SOAL YANG MASUK KE LOKAL</p>
                                                 </div>
                                                 <div class='box-body'>
                                                 <table class='table table-striped'>
                                                         <th>Nama Data</th><th>Data Berhasil Masuk</th><th>Data Gagal</th>
                                                         <tr><td>Bank Soal</td><td><i class='fa fa-check text-green'></i> $masuk2</td><td><i class='fa fa-times text-red'></i> $gagal2</td></tr>
                                                         <tr><td>Data Soal</td><td><i class='fa fa-check text-green'></i> $masuk3</td><td><i class='fa fa-times text-red'></i> $gagal3</td></tr>
-                                                       
+                                                        <tr><td>Data File Pendukung</td><td><i class='fa fa-check text-green'></i> $masuk5</td><td><i class='fa fa-times text-red'></i> $gagal5</td></tr>
                                                     </table>
                                                 
                                                 </div><!-- /.box-body -->
@@ -190,7 +190,7 @@ if ($koneksi) {
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-ban"></i> Sinkron Data Soal Gagal!</h4>
         Silahkan periksa koneksi internet dan token
-      </div>';
+    </div>';
                 }
             }
             if ($data == 'jadwal') {
@@ -206,10 +206,11 @@ if ($koneksi) {
                     foreach ($sync['jadwal'] as $jadwal) {
                         // $status_  diset menjadi 0, untuk merubah status ujian di server lokal non aktif semua
                         $status_ = 0;
+                        $lama_ujian_ = 120;
 
                         $sqljadwal = mysqli_query($koneksi, "insert into ujian
                                 (id_ujian,kode_nama,id_pk,id_guru,id_mapel,kode_ujian,nama,jml_soal,jml_esai,bobot_pg,opsi,bobot_esai,tampil_pg,tampil_esai,lama_ujian,tgl_ujian,tgl_selesai,waktu_ujian,selesai_ujian,level,kelas,sesi,acak,token,status,hasil,kkm,ulang,soal_agama,ulang_kkm,btn_selesai,pelanggaran,reset) values            
-                                ('$jadwal[id_ujian]','$jadwal[kode_nama]','$jadwal[id_pk]','$jadwal[id_guru]','$jadwal[id_mapel]','$jadwal[kode_ujian]','$jadwal[nama]','$jadwal[jml_soal]','$jadwal[jml_esai]','$jadwal[bobot_pg]','$jadwal[opsi]','$jadwal[bobot_esai]','$jadwal[tampil_pg]','$jadwal[tampil_esai]','$jadwal[lama_ujian]','$jadwal[tgl_ujian]','$jadwal[tgl_selesai]','$jadwal[waktu_ujian]','$jadwal[selesai_ujian]','$jadwal[level]','$jadwal[kelas]','$jadwal[sesi]','$jadwal[acak]','$jadwal[token]',$status_,'$jadwal[hasil]','$jadwal[kkm]','$jadwal[ulang]','$jadwal[soal_agama]','$jadwal[ulang_kkm]','$jadwal[btn_selesai]','$jadwal[pelanggaran]','$jadwal[reset]')");
+                                ('$jadwal[id_ujian]','$jadwal[kode_nama]','$jadwal[id_pk]','$jadwal[id_guru]','$jadwal[id_mapel]','$jadwal[kode_ujian]','$jadwal[nama]','$jadwal[jml_soal]','$jadwal[jml_esai]','$jadwal[bobot_pg]','$jadwal[opsi]','$jadwal[bobot_esai]','$jadwal[tampil_pg]','$jadwal[tampil_esai]','$lama_ujian_','$jadwal[tgl_ujian]','$jadwal[tgl_selesai]','$jadwal[waktu_ujian]','$jadwal[selesai_ujian]','$jadwal[level]','$jadwal[kelas]','$jadwal[sesi]','$jadwal[acak]','$jadwal[token]',$status_,'$jadwal[hasil]','$jadwal[kkm]','$jadwal[ulang]','$jadwal[soal_agama]','$jadwal[ulang_kkm]','$jadwal[btn_selesai]','$jadwal[pelanggaran]','$jadwal[reset]')");
                         if (!$sqljadwal) {
                             $gagal4++;
                         } else {
@@ -221,8 +222,8 @@ if ($koneksi) {
                                     <div class='row'>
                                         <div class='col-md-12'>
                                             <div class='box box-solid'>
-                                                <div class='box-header with-border bg-blue'>
-                                                <h5 class='box-title'>DATA JADWAL YANG MASUK KE LOKAL</h5>
+                                                <div class='box-header with-border bg-info text-center'>
+                                                    <p class='box-title text-bold'>DATA JADWAL YANG MASUK KE LOKAL</p>
                                                 </div>
                                                 <div class='box-body'>
                                                 <table class='table table-striped'>
@@ -239,7 +240,7 @@ if ($koneksi) {
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-ban"></i> Sinkron Data Soal Gagal!</h4>
         Silahkan periksa koneksi internet dan token
-      </div>';
+    </div>';
                 }
             }
         }
@@ -248,7 +249,7 @@ if ($koneksi) {
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-ban"></i> Sinkron Gagal!</h4>
         Silahkan memilih data sinkron dan mengisi token dengan benar
-      </div>';
+    </div>';
     }
     //Tarik Data Peserta Ujian
 

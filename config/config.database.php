@@ -7,7 +7,7 @@
 
 //konfigurasi server cbtlokal
 $host = 'localhost';
-$debe = 'candy_cbt292_git';
+$debe = 'candy_cbtcandy292_git';
 $user = 'root';
 $pass = '';
 

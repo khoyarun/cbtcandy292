@@ -198,7 +198,7 @@ $tglsekarang = time();
                 <ul class='sidebar-menu tree' data-widget='tree'>
                     <li class='header'>Main Menu Peserta Ujian</li>
                     <li><a href='<?= $homeurl ?>'><i class='fas fa-tachometer-alt fa-fw  '></i> <span> Dashboard</span></a></li>
-                    <!--<li><a href='<?= $homeurl ?>/update_data'><i class='fas fa-id-badge fa-fw  '></i> <span> Update Nomor HP</span></a></li>-->
+                    <li><a href='<?= $homeurl ?>/update_data'><i class='fas fa-id-badge fa-fw  '></i> <span> Update Data</span></a></li>
                     <li><a href='<?= $homeurl ?>/jadwal'><i class='fas fa-calendar fa-fw  '></i> <span> Jadwal Ujian</span></a></li>
                     <!-- <li><a href='<?= $homeurl ?>/materi'><i class='fas fa-file fa-fw  '></i> <span> Materi Belajar</span></a></li>
                     <li><a href='<?= $homeurl ?>/tugassiswa'><i class='fas fa-edit fa-fw  '></i> <span> Tugas Siswa</span></a></li> -->
@@ -216,7 +216,6 @@ $tglsekarang = time();
             <section class='content' style="margin-top:-95px">
                 <?php if ($pg == '') : ?>
                     <div class='row'>
-                      
                         <div class='col-md-12'>
                             <div class='box box-solid'>
                                 <div class='box-header with-border'>
